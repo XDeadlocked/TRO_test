@@ -12,6 +12,7 @@ year={2023}
 }
 ```
 
+
 ## Introduction
 
 We study the problem of out-of-distribution (OOD) generalization.
