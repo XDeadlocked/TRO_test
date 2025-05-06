@@ -31,7 +31,7 @@ def write_pickle(data, name):
 
 def setup_experiment(args, opt):
     # log file
-    current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    current_time = datetime.now().strftime('%Y-%m__%H-%M-%S')
     outfolder = os.path.join('runs', args.dataset, args.model, current_time)
 
     # make directories

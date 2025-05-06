@@ -13,7 +13,7 @@ opt.seed = 233
 # Learning
 opt.lr_e = 3e-5
 opt.groupdro_eta = 1. # DRO's eta hyper-parameter
-opt.lmbda = 100. # regularizer
+opt.lmbda = 0.01 # regularizer
 opt.beta1 = 0.9
 opt.no_bn = True
 opt.threshold = 80

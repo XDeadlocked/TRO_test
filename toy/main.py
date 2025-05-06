@@ -24,6 +24,9 @@ parser.add_argument('--partial', default=0, type=int, help='source (1) or source
 # IRM
 parser.add_argument('--irm_penal', default=1e-1, type=float, help='irm penalty coefficient')
 
+# lambda
+parser.add_argument('--lmbda', default=100., type=float, help='dual variable')
+
 cudnn.benchmark = True
 
 args = parser.parse_args()
@@ -73,7 +76,7 @@ elif args.dataset == "toy_d60":
 
 opt.num_source = len(opt.src_domain)
 opt.num_target = opt.num_domain - opt.num_source
-
+opt.lmbda = args.lmbda
 if args.dataset == "toy_d15":
     data_source = os.path.join("data", "toy_d15_spiral_tight_boundary.pkl")
 elif args.dataset == "toy_d60":
@@ -100,10 +103,17 @@ dataloader = DataLoader(dataset=dataset, shuffle=True, batch_size=opt.batch_size
 model = Model(opt).to(opt.device)
 
 # train
-for epoch in range(opt.num_epoch):
-    model.learn(epoch, dataloader)
+# for epoch in range(opt.num_epoch):
+#     model.learn(epoch, dataloader)
 
-    if (epoch + 1) % opt.save_interval == 0 or (epoch + 1) == opt.num_epoch:
-        model.save(model.model_path)
-    if (epoch + 1) % opt.test_interval == 0 or (epoch + 1) == opt.num_epoch:
-        model.test(epoch, dataloader)
+#     if (epoch + 1) % opt.save_interval == 0 or (epoch + 1) == opt.num_epoch:
+#         model.save(model.model_path)
+#     if (epoch + 1) % opt.test_interval == 0 or (epoch + 1) == opt.num_epoch:
+#         model.test(epoch, dataloader)
+
+import networkx as nx
+import matplotlib.pyplot as plt
+
+G = nx.from_numpy_array(opt.A)   # 快速画图
+nx.draw_circular(G, with_labels=True, node_size=300)
+plt.savefig("graph.png")

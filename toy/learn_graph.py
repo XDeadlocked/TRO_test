@@ -81,6 +81,8 @@ dataset = SeqToyDataset(datasets, size=len(datasets[0]))  # mix sub dataset to a
 dataloader = DataLoader(dataset=dataset, shuffle=True, batch_size=opt.batch_size)
 
 model = Model(opt).to(opt.device)
+print(model)
+
 
 # Train ERM model (super quick)
 for epoch in range(opt.num_epoch):

@@ -409,7 +409,7 @@ class TRO(BaseModel):
             # DG-15
             if "15" in opt.dataset:
                 # replace self.prior with values generated from learn_graph.py
-                self.prior = [0.0, 0.0, 0.0, 0.0, 0.0, 0.4]
+                self.prior = [0.0, 0.0, 0.0, 0.4, 0.0, 0.0]
             elif "60" in opt.dataset:
                 self.prior = [0.0, 0.0, 0.0, 0.0, 0.0, 0.2]
 
